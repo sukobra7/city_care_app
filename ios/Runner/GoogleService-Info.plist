@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>612804903373-7pngnj1u2m2t3lu80dg3pi1as03i1qcf.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.612804903373-7pngnj1u2m2t3lu80dg3pi1as03i1qcf</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDrNF8zE_8gX2kwDNqVqsFSxc09wNjID8k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>612804903373</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>net.nakamura.cityCareApp</string>
+	<key>PROJECT_ID</key>
+	<string>city-care-app-de8ec</string>
+	<key>STORAGE_BUCKET</key>
+	<string>city-care-app-de8ec.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:612804903373:ios:45f1a1669252f9a43c8484</string>
+</dict>
+</plist>
