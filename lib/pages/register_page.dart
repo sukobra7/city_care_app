@@ -1,12 +1,16 @@
 import 'package:city_care_app/utils/constants.dart';
+import 'package:city_care_app/view_models/register_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 // import 'package:city_care/utils/constants.dart';
 
 class RegisterPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  RegisterViewModel _registerVM;
 
   Future<bool> _registerUser(BuildContext context) async {
 
@@ -15,6 +19,11 @@ class RegisterPage extends StatelessWidget {
     if (_formKey.currentState.validate()) {
       final email = _emailController.text;
       final password = _emailController.text;
+
+      isRegistered = await _registerVM.register(email, password);
+      if(isRegistered) {
+        Navigator.pop(context, true);
+      }
     }
 
     return isRegistered;
@@ -22,6 +31,9 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // ここでregisterviewmodelのインスタンスを取得
+    _registerVM = Provider.of<RegisterViewModel>(context);
 
     return Scaffold(
         appBar: AppBar(title: Text("Register")),
@@ -65,7 +77,7 @@ class RegisterPage extends StatelessWidget {
                         _registerUser(context);
                       },
                       color: Colors.blue),
-                  Text("")
+                  Text(_registerVM.message)
                 ],
               ),
             ),
