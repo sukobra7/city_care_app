@@ -1,7 +1,7 @@
 class Constants {
 
   static String REGISTER_PAGE_HERO_IMAGE = "assets/images/city_care.jpg";
-  static String LOGIN_PAGE_HERO_IMAGE =
+  static String loginPageHeroImage =
       "assets/images/login_page_hero_image.jpg";
 
 

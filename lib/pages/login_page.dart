@@ -1,6 +1,8 @@
 
 import 'package:city_care_app/utils/constants.dart';
+import 'package:city_care_app/view_models/login_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class LoginPage extends StatelessWidget {
@@ -8,15 +10,23 @@ class LoginPage extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  LoginViewModel _loginVM;
+
   void _login(BuildContext context) async {
 
     final email = _emailController.text;
     final password = _passwordController.text;
+
+    bool isLoggedIn = await _loginVM.login(email, password);
+    if(isLoggedIn) {
+      Navigator.pop(context, true);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
 
+  _loginVM = Provider.of<LoginViewModel>(context);
 
     return WillPopScope(
       onWillPop: () {
@@ -35,7 +45,7 @@ class LoginPage extends StatelessWidget {
                       CircleAvatar(
                           maxRadius: 150,
                           backgroundImage:
-                          AssetImage(Constants.LOGIN_PAGE_HERO_IMAGE)),
+                          AssetImage(Constants.loginPageHeroImage)),
                       TextFormField(
                         controller: _emailController,
                         validator: (value) {
@@ -64,7 +74,7 @@ class LoginPage extends StatelessWidget {
                             _login(context);
                           },
                           color: Colors.blue),
-                      Text("")
+                      Text(_loginVM.message)
                     ],
                   )),
             ),
