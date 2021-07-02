@@ -18,7 +18,12 @@ class _AddIncidentsPage extends State<AddIncidentsPage> {
   final _descriptionController = TextEditingController();
 
   void _selectPhotoFromPhotoLibrary() async {
-
+    final imagePicker = ImagePicker();
+    final pickerFile = await imagePicker.getImage(source: ImageSource.gallery);
+  
+    setState(() {
+      _image = File(pickerFile.path);
+    });
   }
 
   void _selectPhotoFromCamera() async {
