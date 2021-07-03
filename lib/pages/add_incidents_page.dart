@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'package:city_care_app/view_models/add_incident_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 enum PhotoOptions { camera, library }
 
@@ -13,21 +15,27 @@ class _AddIncidentsPage extends State<AddIncidentsPage> {
 
   File _image;
   final _formKey = GlobalKey<FormState>();
+  AddIncidentViewModel _addIncidentVM;
 
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
 
   void _selectPhotoFromPhotoLibrary() async {
     final imagePicker = ImagePicker();
-    final pickerFile = await imagePicker.getImage(source: ImageSource.gallery);
+    final pickedFile = await imagePicker.getImage(source: ImageSource.gallery);
   
     setState(() {
-      _image = File(pickerFile.path);
+      _image = File(pickedFile.path);
     });
   }
 
   void _selectPhotoFromCamera() async {
+    final imagePicker = ImagePicker();
+    final pickedFile = await imagePicker.getImage(source: ImageSource.camera);
 
+    setState(() {
+      _image = File(pickedFile.path);
+    });
   }
 
   void _optionSelected(PhotoOptions option) {
@@ -45,7 +53,9 @@ class _AddIncidentsPage extends State<AddIncidentsPage> {
 
     // validate the form
     if (_formKey.currentState.validate()) {
-
+      // upload photo to firebase storage
+      final filePath = _addIncidentVM.uploadFile(_image);
+      print(filePath);
     }
 
   }
@@ -56,6 +66,8 @@ class _AddIncidentsPage extends State<AddIncidentsPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    _addIncidentVM = Provider.of<AddIncidentViewModel>(context);
 
     return Scaffold(
         appBar: AppBar(

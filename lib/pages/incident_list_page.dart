@@ -41,8 +41,8 @@ class _IncidentListPage extends State<IncidentListPage> {
   }
 
   void _navigateToAddIncidentsPage(BuildContext context) async {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => AddIncidentsPage()));
+    bool incidentAdded = await AppNavigator.navigatorToAddIncidentPage(context);
+    
   }
 
   @override
